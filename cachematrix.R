@@ -6,12 +6,12 @@
 # ...so that it doesn't take ages to calculate again!
 makeCacheMatrix <- function(x = matrix()) {
   i <- NULL # the inverse
-  get <- function() x
+  get <- function() x # no parameters, just return x
   set <- function(y) {
-    x <<- y
-    i <<- NULL
+    x <<- y  # set the value of x in the upper context
+    i <<- NULL # to say explicitly, no inverse yet
   }
-  getsolve <- function() i
+  getsolve <- function() i # return our cached inverse
   setsolve <- function(inv) i <<- inv
   list(set = set, get = get, getsolve = getsolve, setsolve = setsolve)
 }
